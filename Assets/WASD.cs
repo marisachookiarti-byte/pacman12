@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class WASD : MonoBehaviour
 {
@@ -7,34 +9,41 @@ public class WASD : MonoBehaviour
     public float hiz = 2500;
     private int dx = 0;
     private int dy = 1;
+
+    public KeyControl upKey;
+    public KeyControl downKey;
+    public KeyControl leftKey;
+    public KeyControl rightKey;
+
+    public UnityEvent<Vector2> movementEvent;
+    
     void Start()
-    {
-        
+        {
+        upKey = Keyboard.current.wKey;
+        downKey = Keyboard.current.sKey;
+        leftKey = Keyboard.current.aKey;
+        rightKey = Keyboard.current.dKey;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.dKey.wasPressedThisFrame)
+        if (rightKey.isPressed)
         {
-            dx = 1;
-            dy = 0;
+            movementEvent.Invoke(new Vector2(1, 0));
         }
-        if (Keyboard.current.aKey.wasPressedThisFrame)
+        if (leftKey.isPressed)
         {
-            dx = -1;
-            dy = 0;
+            movementEvent.Invoke(new Vector2(-1, 0));
         }
-        if (Keyboard.current.wKey.wasPressedThisFrame)
+        if (upKey.isPressed)
         {
-            dx = 0;
-            dy = 1;
+            movementEvent.Invoke(new Vector2(0, 1));
         }
-        if (Keyboard.current.sKey.wasPressedThisFrame)
+        if (downKey.isPressed)
         {
-            dx = 0;
-            dy = -1;
+            movementEvent.Invoke(new Vector2(0, -1));
         }
-        transform.Translate(dx * Time.deltaTime, dy * Time.deltaTime, 0);
     }
 }
