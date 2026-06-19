@@ -494,27 +494,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 615934958}
-  - component: {fileID: 615934957}
+  - component: {fileID: 615934959}
   m_Layer: 0
-  m_Name: coinspawn
+  m_Name: GameController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &615934957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 615934956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8be96c3168f50fb4584ed8ac511a0f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  coin: {fileID: 1672740520389237821, guid: 995366cce1cc70949a2120b86aa88ea4, type: 3}
 --- !u!4 &615934958
 Transform:
   m_ObjectHideFlags: 0
@@ -530,6 +517,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &615934959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615934956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a5310fae5947ea90f12977c9e41978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DefaultNamespace.GameController
+  score: 0
+  maxCoin: 10
+  coin: {fileID: 1672740520389237821, guid: 995366cce1cc70949a2120b86aa88ea4, type: 3}
+  pacman: {fileID: 1533279657}
+  textMeshPro: {fileID: 2007310186}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,11 +899,11 @@ GameObject:
   - component: {fileID: 1533279654}
   - component: {fileID: 1533279653}
   - component: {fileID: 1533279652}
+  - component: {fileID: 1533279657}
   - component: {fileID: 1533279655}
   - component: {fileID: 1533279656}
-  - component: {fileID: 1533279657}
   m_Layer: 0
-  m_Name: pac
+  m_Name: Pacman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -918,6 +922,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   hiz: 500
+  movementEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1533279657}
+        m_TargetAssemblyTypeName: PacmanController, Assembly-CSharp
+        m_MethodName: ReceiveInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!212 &1533279653
 SpriteRenderer:
   serializedVersion: 2
@@ -1067,8 +1086,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf53634cbd6f9b43af354d9f9136eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  score: 0
-  t: {fileID: 2007310186}
+  speedMul: 5
+  eatCoinEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2007310184
 GameObject:
   m_ObjectHideFlags: 0
