@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace DefaultNamespace
@@ -8,16 +9,16 @@ namespace DefaultNamespace
     {
         public int score = 0;
         public int maxCoin = 10;
+        public int scene = 1;
         
         public GameObject coin;
         public PacmanController pacman;
         public TMP_Text textMeshPro;
-        
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             pacman.eatCoinEvent.AddListener(OnPacmanEatCoin);
-            
             for(int i=0; i < maxCoin; i++) {
                 Instantiate(coin, new Vector3(Random.Range(-10, 10), Random.Range(-4, 4), 0), pacman.transform.rotation);
             }
@@ -25,17 +26,19 @@ namespace DefaultNamespace
 
         public void Update()
         {
-            if (score >= 10)
+            if (score >= maxCoin)
             {
-                Reset();
+                SceneManager.LoadScene(scene);
             }
         }
         
         private void OnPacmanEatCoin(Collision2D collision)
         {
-            score++;
-            Destroy(collision.gameObject);
-            textMeshPro.text = score.ToString();
+            if (collision.gameObject.CompareTag("coin")){
+                score++;
+                Destroy(collision.gameObject);
+                textMeshPro.text = score.ToString();
+            }
         }
         
         

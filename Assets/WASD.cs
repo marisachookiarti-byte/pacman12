@@ -6,9 +6,6 @@ using UnityEngine.InputSystem.Controls;
 public class WASD : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public float hiz = 2500;
-    private int dx = 0;
-    private int dy = 1;
 
     public KeyControl upKey;
     public KeyControl downKey;
