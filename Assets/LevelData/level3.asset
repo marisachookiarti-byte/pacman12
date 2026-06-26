@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3177f2397d42e681661d30dd7a721f, type: 3}
   m_Name: level3
   m_EditorClassIdentifier: Assembly-CSharp::DefaultNamespace.LevelScriptableObject
-  maxCoin: 10
+  maxCoin: 20

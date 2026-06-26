@@ -5,6 +5,7 @@ public class PacmanController : MonoBehaviour
 {
     public float speedMul = 5f;
     public UnityEvent<Collision2D> eatCoinEvent;
+    public UnityEvent<Collision2D> hitEvent;
 
     public void ReceiveInput(Vector2 input)
     {
@@ -14,6 +15,13 @@ public class PacmanController : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        eatCoinEvent.Invoke(collision);
+        if (collision.gameObject.CompareTag("coin"))
+        {
+            eatCoinEvent.Invoke(collision);
+        }
+        if (collision.gameObject.CompareTag("enemy"))
+        {
+            hitEvent.Invoke(collision);
+        }
     }
 }
